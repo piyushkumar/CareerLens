@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111111">
+  <title>Login | CareerLens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="login.css">
+  <script src="login.js" defer></script>
+</head>
+<body>
+  <div class="background-grid" aria-hidden="true"></div>
+  <main class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="CareerLens home">
+        <span class="brand-icon">C</span>
+        <span>CareerLens</span>
+      </a>
+      <a class="back-link" href="index.html"><span aria-hidden="true">←</span> Back to home</a>
+    </header>
+
+    <section class="login-layout">
+      <div class="intro-panel">
+        <p class="eyebrow"><span></span> YOUR NEXT CHAPTER STARTS HERE</p>
+        <h1>See your<br><span>potential.</span></h1>
+        <p class="intro-copy">Your skills have a direction. Sign in to continue exploring careers that fit you.</p>
+        <div class="mini-list" aria-label="CareerLens features">
+          <div><span class="feature-number"></span><span></span></div>
+          <div><span class="feature-number"></span><span></span></div>
+          <div><span class="feature-number"></span><span></span></div>
+        </div>
+      </div>
+
+      <section class="login-card" aria-labelledby="login-title">
+        <div class="card-symbol" aria-hidden="true"></div>
+        <h2 id="login-title">Welcome back.</h2>
+        <p class="card-copy">Sign in to your CareerLens account.</p>
+
+        <form id="login-form" novalidate>
+          <div class="form-field">
+            <label for="email">Email address</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+            <small class="error" id="email-error"></small>
+          </div>
+
+          <div class="form-field">
+            <div class="label-line">
+              <label for="password">Password</label>
+              <a href="#" id="forgot-link" class="inline-link">Forgot password?</a>
+            </div>
+            <div class="password-field">
+              <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" minlength="8" required>
+              <button type="button" id="toggle-password" class="show-password" aria-label="Show password">Show</button>
+            </div>
+            <small class="error" id="password-error"></small>
+          </div>
+
+          <label class="remember-row">
+            <input type="checkbox" id="remember" name="remember">
+            <span>Remember me</span>
+          </label>
+
+          <button class="submit-button" type="submit">Sign in <span aria-hidden="true">↗</span></button>
+          <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="divider"><span>NEW TO CAREERLENS?</span></div>
+        <a href="register.html" class="register-button">Create an account <span aria-hidden="true">→</span></a>
+      </section>
+    </section>
+
+    <footer class="page-footer">
+      <span>CareerLens © 2026</span>
+      <span>Find your direction.</span>
+    </footer>
+  </main>
+</body>
+</html>

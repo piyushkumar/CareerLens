@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111111">
+  <title>Create account | CareerLens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="register.css">
+  <script src="register.js" defer></script>
+</head>
+<body>
+  <div class="background-grid" aria-hidden="true"></div>
+  <main class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="CareerLens home">
+        <span class="brand-icon">C</span>
+        <span>CareerLens</span>
+      </a>
+      <a class="back-link" href="index.html"><span aria-hidden="true">←</span> Back to home</a>
+    </header>
+
+    <section class="register-layout">
+      <div class="intro-panel">
+        <p class="eyebrow"><span></span> MAKE YOUR NEXT MOVE</p>
+        <h1>Find your<br><span>direction.</span></h1>
+        <p class="intro-copy">Create your CareerLens account and start turning what you know into what comes next.</p>
+        <div class="steps" aria-hidden="true">
+          <span class="step-line"></span>
+          <p><strong>01</strong> Create your profile</p>
+          <p><strong>02</strong> Explore your strengths</p>
+          <p><strong>03</strong> Plan your next move</p>
+        </div>
+      </div>
+
+      <section class="register-card" aria-labelledby="register-title">
+        <h2 id="register-title">Create your account.</h2>
+        <p class="card-copy">Start your journey with CareerLens.</p>
+
+        <form id="register-form" novalidate>
+          <div class="form-field">
+            <label for="full-name">Full name</label>
+            <input id="full-name" name="name" type="text" autocomplete="name" placeholder="Your full name" required minlength="2">
+            <small class="error" id="name-error"></small>
+          </div>
+
+          <div class="form-field">
+            <label for="email">Email address</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+            <small class="error" id="email-error"></small>
+          </div>
+
+          <div class="form-field">
+            <label for="password">Password</label>
+            <div class="password-field">
+              <input id="password" name="password" type="password" autocomplete="new-password" placeholder="At least 8 characters" minlength="8" required>
+              <button type="button" class="show-password" data-toggle="password" aria-label="Show password">Show</button>
+            </div>
+            <small class="field-hint">Use at least 8 characters.</small>
+            <small class="error" id="password-error"></small>
+          </div>
+
+          <div class="form-field">
+            <label for="confirm-password">Confirm password</label>
+            <div class="password-field">
+              <input id="confirm-password" name="confirmPassword" type="password" autocomplete="new-password" placeholder="Enter your password again" required>
+              <button type="button" class="show-password" data-toggle="confirm-password" aria-label="Show password">Show</button>
+            </div>
+            <small class="error" id="confirm-password-error"></small>
+          </div>
+
+          <div class="terms-wrap">
+            <label class="terms-row" for="terms">
+              <input type="checkbox" id="terms" name="terms" required>
+              <span>I agree to the <a href="#" class="terms-link">Terms</a> and <a href="#" class="terms-link">Privacy Policy</a>.</span>
+            </label>
+            <small class="error" id="terms-error"></small>
+          </div>
+
+          <button class="submit-button" type="submit">Create account <span aria-hidden="true">↗</span></button>
+          <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="divider"><span>ALREADY HAVE AN ACCOUNT?</span></div>
+        <a href="login.html" class="login-button">Sign in instead <span aria-hidden="true">→</span></a>
+      </section>
+    </section>
+
+    <footer class="page-footer">
+      <span>CareerLens © 2026</span>
+      <span>Find your direction.</span>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="Start your CareerLens profile with a resume or enter your skills manually.">
+  <title>Resume Analysis | CareerLens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="resume-analysis.css">
+  <script src="resume-analysis.js" defer></script>
+</head>
+<body>
+  <div class="background-grid" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="CareerLens landing page"><span class="brand-icon">C</span><span>CareerLens</span></a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a class="nav-link" href="home.html">Dashboard</a>
+      <a class="nav-link active" href="resume-analysis.html" aria-current="page">Resume Analysis</a>
+      <a class="nav-link" href="#manual-entry">Manual skills</a>
+    </nav>
+    <a class="button button-light login-nav" href="login.html?returnTo=resume-analysis">Log in</a>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
+  </header>
+  <nav class="mobile-nav" id="mobile-nav" hidden aria-label="Mobile navigation">
+    <a href="home.html">Dashboard</a><a href="resume-analysis.html">Resume Analysis</a><a href="#manual-entry">Manual skills</a><a href="login.html?returnTo=resume-analysis">Log in</a>
+  </nav>
+
+  <main class="page-width">
+    <section class="page-intro">
+      <a class="back-link" href="home.html">← Back to dashboard</a>
+      <p class="eyebrow"><span class="status-dot"></span> BUILD YOUR CAREER PROFILE</p>
+      <h1>Let's start with<br><span>what you know.</span></h1>
+      <p class="intro-copy">Share your resume or add your skills yourself. You can review your information before moving on to career recommendations.</p>
+    </section>
+
+    <section class="workflow-grid" aria-label="Choose how to build your profile">
+      <article class="upload-card panel">
+        <div class="card-heading"><span class="step-number">01</span><div><p class="eyebrow">RECOMMENDED</p><h2>Upload your resume</h2><p class="card-copy">We'll use your resume to identify skills and relevant experience.</p></div></div>
+        <form id="resume-form" novalidate>
+          <label class="drop-zone" id="drop-zone" for="resume-file" tabindex="0">
+            <span class="upload-icon" aria-hidden="true">↥</span>
+            <strong id="drop-title">Drop your resume here</strong>
+            <span id="drop-copy">or <span class="choose-link">browse files</span></span>
+            <small>PDF only · Select a file up to 10 MB</small>
+          </label>
+          <input id="resume-file" name="resume" type="file" accept="application/pdf,.pdf" hidden>
+          <p class="field-error" id="file-error" role="alert"></p>
+          <div class="selected-file" id="selected-file" hidden><span class="file-icon">PDF</span><span class="file-details"><strong id="file-name"></strong><small id="file-size"></small></span><button type="button" id="remove-file" class="text-button">Remove</button></div>
+          <button class="button button-primary full-button" id="analyze-button" type="submit">Continue with resume <span aria-hidden="true">↗</span></button>
+          <p class="privacy-note"><span aria-hidden="true">⌑</span> Your resume should only be used to build your career profile. Upload processing and secure storage will be connected to the backend.</p>
+        </form>
+      </article>
+
+      <article class="manual-card panel" id="manual-entry">
+        <div class="card-heading"><span class="step-number">02</span><div><p class="eyebrow">NO RESUME? NO PROBLEM</p><h2>Enter skills manually</h2><p class="card-copy">Add the technical skills you already know, even if you're still learning them.</p></div></div>
+        <form id="skills-form" novalidate>
+          <label class="field-label" for="skill-input">Your skills</label>
+          <div class="skill-input-row"><input id="skill-input" type="text" placeholder="e.g. Python, SQL, Excel" autocomplete="off" maxlength="60"><button type="button" id="add-skill" class="add-button">Add</button></div>
+          <p class="field-hint">Type one skill at a time and press Enter or Add.</p>
+          <div class="skill-chips" id="skill-chips" aria-live="polite"><p class="chips-empty" id="chips-empty">Your added skills will appear here.</p></div>
+          <div class="suggestions"><span>QUICK ADD</span><div class="suggestion-list"><button type="button" data-skill="Python">Python <span>+</span></button><button type="button" data-skill="SQL">SQL <span>+</span></button><button type="button" data-skill="Excel">Excel <span>+</span></button><button type="button" data-skill="Pandas">Pandas <span>+</span></button><button type="button" data-skill="Machine Learning">Machine Learning <span>+</span></button></div></div>
+          <p class="field-error" id="skills-error" role="alert"></p>
+          <button class="button button-primary full-button" type="submit">Continue with skills <span aria-hidden="true">↗</span></button>
+          <p class="privacy-note">You can edit your skill list before analysis. Proficiency assessment can be added in a later step.</p>
+        </form>
+      </article>
+    </section>
+
+    <section class="next-panel panel">
+      <div class="next-icon" aria-hidden="true">✦</div><div><p class="eyebrow">WHAT HAPPENS NEXT?</p><h2>Review first. Decide your direction next.</h2><p>After your profile is prepared, CareerLens will help you explore suitable careers, identify skill gaps, and plan what to learn.</p></div>
+      <ol class="next-steps"><li><span>1</span>Review profile</li><li><span>2</span>Explore careers</li><li><span>3</span>Plan learning</li></ol>
+    </section>
+    <p class="prototype-note" id="prototype-note" role="status">Frontend preview: resume extraction, profile saving, and career analysis are not connected yet.</p>
+  </main>
+  <footer class="site-footer page-width"><a class="brand footer-brand" href="index.html"><span class="brand-icon">C</span><span>CareerLens</span></a><span>CareerLens © 2026</span><a href="#top" id="top-link">Back to top ↑</a></footer>
+</body>
+</html>
