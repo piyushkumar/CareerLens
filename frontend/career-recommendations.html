@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111111">
+  <title>Career Recommendations | CareerLens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="resume-analysis.css">
+  <style>
+    .results-wrap {
+      max-width: 900px;
+      margin: 0 auto 72px;
+    }
+
+    .results-card {
+      padding: clamp(24px, 4vw, 42px);
+    }
+
+    .results-card h1 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      letter-spacing: -.055em;
+      line-height: 1.02;
+      margin: 14px 0;
+    }
+
+    .results-copy {
+      color: var(--muted, #aaa);
+      line-height: 1.7;
+      max-width: 650px;
+    }
+
+    .empty-icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 18px;
+      border: 1px solid rgba(164, 151, 255, .35);
+      border-radius: 16px;
+      color: #b9adff;
+      font-size: 1.6rem;
+    }
+
+    .empty-result h2 {
+      font-size: 1.2rem;
+      margin: 0 0 10px;
+    }
+
+    .empty-result p {
+      color: var(--muted, #aaa);
+      line-height: 1.7;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .results-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .results-actions .button {
+      justify-content: center;
+    }
+
+    @media (max-width: 520px) {
+      .results-actions {
+        flex-direction: column;
+      }
+
+      .results-actions .button {
+        width: 100%;
+      }
+    }
+
+    .career-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .career-card {
+      padding: 24px;
+      border: 1px solid var(--border, #333);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, .025);
+    }
+
+    .career-card h2 {
+      margin: 12px 0;
+      font-size: 1.2rem;
+    }
+
+    .career-card p,
+    .career-card li {
+      color: var(--muted, #aaa);
+      line-height: 1.65;
+    }
+
+    .career-card ul {
+      padding-left: 20px;
+    }
+
+    .career-tag {
+      display: inline-block;
+      padding: 6px 10px;
+      border: 1px solid rgba(164, 151, 255, .35);
+      border-radius: 20px;
+      color: #b9adff;
+      font-size: .78rem;
+    }
+
+    .career-card .button {
+      width: 100%;
+      justify-content: center;
+      margin-top: 12px;
+    }
+
+    #career-notice {
+      margin-top: 20px;
+      padding: 14px 18px;
+      border-left: 2px solid #a497ff;
+      background: rgba(164, 151, 255, .08);
+      color: #c8c0ff;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 650px) {
+      .career-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="background-grid" aria-hidden="true"></div>
+  <header class="site-header"><a class="brand" href="index.html"><span
+        class="brand-icon">C</span><span>CareerLens</span></a>
+    <nav class="desktop-nav" aria-label="Main navigation"><a class="nav-link" href="home.html">Dashboard</a><a
+        class="nav-link active" href="career-recommendations.html" aria-current="page">Career direction</a></nav><a
+      class="button button-light login-nav" href="login.html?returnTo=career-recommendations">Log in</a><button
+      class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false"
+      aria-controls="mobile-nav"><span></span><span></span></button>
+  </header>
+  <nav class="mobile-nav" id="mobile-nav" hidden aria-label="Mobile navigation"><a href="home.html">Dashboard</a><a
+      href="career-recommendations.html">Career direction</a><a href="login.html?returnTo=career-recommendations">Log
+      in</a></nav>
+  <main class="page-width">
+    <section class="page-intro"><a class="back-link" href="profile-review.html">← Back to profile review</a>
+      <p class="eyebrow"><span class="status-dot"></span> STEP 3 · CAREER DIRECTION</p>
+    </section>
+    <section class="results-wrap panel results-card">
+      <p class="eyebrow">CAREER RECOMMENDATIONS</p>
+      <h1>Find a direction<br><span>that fits you.</span></h1>
+      <p class="results-copy">CareerLens will compare your reviewed skills with defined career requirements and explain
+        why each career may be a fit.</p>
+
+      <div id="career-notice" role="status" aria-live="polite">
+        Loading your profile information...
+      </div>
+
+      <div id="career-list" class="career-list" aria-live="polite"></div>
+
+      <div class="empty-result">
+        <div class="empty-icon" aria-hidden="true">✦</div>
+        <h2>Your recommendations will appear here</h2>
+        <p>This page is ready for the next stage, but real recommendations need the skill-analysis and career-matching
+          logic. We won't display invented career matches or scores.</p>
+      </div>
+      <div class="results-actions"><a class="button button-light" href="resume-analysis.html">Edit skills or
+          resume</a><a class="button button-primary" href="profile-review.html">Review profile again <span
+            aria-hidden="true">↗</span></a></div>
+    </section>
+  </main>
+  <footer class="site-footer page-width"><a class="brand footer-brand" href="index.html"><span
+        class="brand-icon">C</span><span>CareerLens</span></a><span>CareerLens © 2026</span><a
+      href="home.html">Dashboard ↑</a></footer>
+  <script src="career-recommendations.js" defer></script>
+</body> 
+
+</html>

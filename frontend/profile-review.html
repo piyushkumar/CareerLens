@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111111">
+  <title>Review Your Profile | CareerLens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="resume-analysis.css">
+  <style>
+    .review-wrap{max-width:850px;margin:0 auto 72px}.review-card{padding:clamp(24px,4vw,42px)}
+    .review-card h1{font-size:clamp(2rem,5vw,3.4rem);letter-spacing:-.055em;line-height:1.02;margin:14px 0}
+    .review-copy{color:var(--muted,#aaa);line-height:1.7;max-width:620px}
+    .review-summary{display:flex;gap:14px;align-items:center;padding:18px;border:1px solid var(--border,#333);border-radius:14px;margin:26px 0;background:rgba(255,255,255,.025)}
+    .review-symbol{display:grid;place-items:center;width:48px;height:48px;flex-shrink:0;border:1px solid rgba(164,151,255,.35);border-radius:12px;color:#b9adff;font-weight:800}
+    .review-summary strong,.review-summary small{display:block}.review-summary small{margin-top:5px;color:var(--muted,#aaa);overflow-wrap:anywhere}
+    .review-section{margin-top:28px}.review-section h2{font-size:1.1rem;margin-bottom:12px}.review-skills{display:flex;flex-wrap:wrap;gap:9px;min-height:72px;padding:16px;border:1px solid var(--border,#333);border-radius:14px}
+    .review-skill{padding:9px 12px;border:1px solid rgba(164,151,255,.35);border-radius:9px;background:rgba(164,151,255,.08);font-size:.9rem}
+    .review-empty{color:var(--muted,#aaa);line-height:1.6;margin:0}.review-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}.review-actions .button{flex:1;min-width:190px;justify-content:center}
+    .notice{margin-top:20px;padding:14px 16px;border-left:2px solid #a99aff;background:rgba(164,151,255,.07);color:#c9c2ff;line-height:1.6;font-size:.9rem}
+    @media(max-width:520px){.review-actions{flex-direction:column}.review-actions .button{width:100%}}
+  </style>
+  <script src="profile-review.js" defer></script>
+</head>
+<body>
+  <div class="background-grid" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="CareerLens landing page"><span class="brand-icon">C</span><span>CareerLens</span></a>
+    <nav class="desktop-nav" aria-label="Main navigation"><a class="nav-link" href="home.html">Dashboard</a><a class="nav-link" href="resume-analysis.html">Resume Analysis</a></nav>
+    <a class="button button-light login-nav" href="login.html?returnTo=profile-review">Log in</a>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
+  </header>
+  <nav class="mobile-nav" id="mobile-nav" hidden aria-label="Mobile navigation"><a href="home.html">Dashboard</a><a href="resume-analysis.html">Resume Analysis</a><a href="login.html?returnTo=profile-review">Log in</a></nav>
+  <main class="page-width">
+    <section class="page-intro"><a class="back-link" href="resume-analysis.html">← Back to resume analysis</a><p class="eyebrow"><span class="status-dot"></span> STEP 2 · PROFILE REVIEW</p></section>
+    <section class="review-wrap panel review-card">
+      <p class="eyebrow">YOUR INPUT</p><h1>Review your<br><span>career profile.</span></h1>
+      <p class="review-copy">Check the information you provided before continuing. You can return and make changes at any time.</p>
+      <div class="review-summary"><span class="review-symbol" id="source-symbol">CL</span><div><strong id="source-title">Profile input</strong><small id="source-detail">Loading your selection…</small></div></div>
+      <section class="review-section"><h2>Skills in your profile</h2><div class="review-skills" id="review-skills" aria-live="polite"></div></section>
+      <p class="notice" id="review-notice" role="status">This is a frontend preview. Resume extraction, profile saving, and career recommendations will be connected during backend integration.</p>
+      <div class="review-actions"><a class="button button-light" href="resume-analysis.html">Edit my information</a><button class="button button-primary" id="continue-careers" type="button">Continue to career direction <span aria-hidden="true">↗</span></button></div>
+    </section>
+  </main>
+  <footer class="site-footer page-width"><a class="brand footer-brand" href="index.html"><span class="brand-icon">C</span><span>CareerLens</span></a><span>CareerLens © 2026</span><a href="home.html">Dashboard ↑</a></footer>
+</body>
+</html>

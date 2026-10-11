@@ -58,14 +58,20 @@ body {
   flex-direction: column;
 }
 
+
 .topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   min-height: 82px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, .08);
+  justify-content: flex-start;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(17, 17, 17, 0.88);
+  backdrop-filter: blur(14px);
 }
+
 
 .brand {
   display: inline-flex;

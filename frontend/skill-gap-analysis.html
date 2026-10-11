@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111111">
+  <title>Skill-Gap Analysis | CareerLens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="resume-analysis.css">
+  <style>
+    .gap-wrap { max-width: 900px; margin: 0 auto 72px; }
+    .gap-panel { padding: clamp(24px, 4vw, 42px); }
+    .gap-panel h1 { font-size: clamp(2rem, 5vw, 3.4rem); letter-spacing: -.055em; line-height: 1.05; margin: 14px 0; }
+    .gap-copy, .gap-description { color: var(--muted, #aaa); line-height: 1.7; }
+    .gap-section { margin-top: 30px; }
+    .gap-section h2 { font-size: 1.2rem; margin-bottom: 14px; }
+    .gap-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .gap-card { border: 1px solid rgba(255,255,255,.12); border-radius: 16px; padding: 22px; background: rgba(255,255,255,.025); }
+    .gap-card h3 { margin: 0 0 8px; font-size: 1rem; }
+    .gap-number { font-size: 2rem; font-weight: 800; margin: 8px 0; }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill-chip { border: 1px solid rgba(164,151,255,.4); border-radius: 10px; padding: 9px 12px; color: #d4ccff; }
+    .skill-chip.missing { border-color: rgba(255,174,120,.4); color: #ffc59b; }
+    .gap-notice { margin-top: 24px; padding: 15px 18px; border-left: 2px solid #a497ff; background: rgba(164,151,255,.08); color: #c8c0ff; line-height: 1.7; }
+    .gap-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 28px; }
+    .gap-actions .button { justify-content: center; }
+    @media (max-width: 600px) {
+      .gap-grid { grid-template-columns: 1fr; }
+      .gap-actions { flex-direction: column; }
+      .gap-actions .button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="background-grid" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-icon">C</span><span>CareerLens</span></a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a class="nav-link" href="home.html">Dashboard</a>
+      <a class="nav-link active" href="career-recommendations.html">Career direction</a>
+    </nav>
+    <a class="button button-light login-nav" href="login.html">Log in</a>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav" hidden aria-label="Mobile navigation">
+    <a href="home.html">Dashboard</a>
+    <a href="career-recommendations.html">Career direction</a>
+    <a href="login.html">Log in</a>
+  </nav>
+
+  <main class="page-width">
+    <section class="page-intro">
+      <a class="back-link" href="career-recommendations.html">← Back to career options</a>
+      <p class="eyebrow"><span class="status-dot"></span> STEP 4 · SKILL-GAP ANALYSIS</p>
+    </section>
+
+    <section class="gap-wrap panel gap-panel">
+      <p class="eyebrow">YOUR SKILL PROFILE</p>
+      <h1>Understand your <span>skill gaps.</span></h1>
+      <p class="gap-copy">Compare your current skills with the typical requirements of your selected career.</p>
+
+      <div class="gap-section">
+        <h2 id="career-title">Selected career</h2>
+        <p id="career-description" class="gap-description"></p>
+      </div>
+
+      <div class="gap-grid gap-section">
+        <article class="gap-card">
+          <h3>Skills you have</h3>
+          <p class="gap-number" id="matched-count">—</p>
+          <div id="matched-skills" class="skill-list"></div>
+        </article>
+        <article class="gap-card">
+          <h3>Skills to develop</h3>
+          <p class="gap-number" id="missing-count">—</p>
+          <div id="missing-skills" class="skill-list"></div>
+        </article>
+      </div>
+
+      <div id="gap-notice" class="gap-notice" role="status" aria-live="polite"></div>
+
+      <div class="gap-actions">
+        <a class="button button-light" href="career-recommendations.html">Choose another career</a>
+        <button class="button button-primary" id="roadmap-button" type="button">Continue to learning roadmap ↗</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer page-width">
+    <a class="brand footer-brand" href="index.html"><span class="brand-icon">C</span><span>CareerLens</span></a>
+    <span>CareerLens © 2026</span>
+    <a href="home.html">Dashboard ↑</a>
+  </footer>
+
+  <script src="skill-gap-analysis.js" defer></script>
+</body>
+</html>

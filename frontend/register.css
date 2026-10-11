@@ -59,12 +59,16 @@ body {
 }
 
 .topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   min-height: 82px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, .08);
+  justify-content: flex-start;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(17, 17, 17, 0.88);
+  backdrop-filter: blur(14px);
 }
 
 .brand {
@@ -90,27 +94,15 @@ body {
   font-weight: 800;
 }
 
-.back-link {
-  color: #b4b4bc;
-  text-decoration: none;
-  font-size: 12px;
-}
 
-.back-link span {
-  margin-right: 7px;
-}
-
-.back-link:hover {
-  color: white;
-}
 
 .register-layout {
   flex: 1;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(360px, 440px);
-  align-items: center;
+  align-items: start;
   gap: clamp(30px, 6vw, 90px);
-  padding: 38px 0 48px;
+  padding: 24px 0 48px;
 }
 
 .intro-panel {
@@ -186,7 +178,7 @@ body {
   max-width: 440px;
   min-width: 0;
   justify-self: end;
-  padding: 30px 32px;
+  padding: 24px 28px;
   border: 1px solid var(--border);
   border-radius: 20px;
   background: var(--card-bg);
@@ -576,5 +568,50 @@ a:focus-visible {
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Keep the registration form compact on desktop */
+@media (min-width: 851px) {
+  .register-layout {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  .register-card {
+    padding: 22px 28px;
+  }
+
+  .card-copy {
+    margin-bottom: 18px;
+  }
+
+  #register-form {
+    gap: 10px;
+  }
+
+  .form-field {
+    gap: 5px;
+  }
+
+  .form-field input {
+    min-height: 42px;
+    padding: 10px 12px;
+  }
+
+  .divider {
+    margin: 12px 0 10px;
+  }
+
+  .submit-button,
+  .login-button {
+    min-height: 40px;
+  }
+}
+
+/* Adjust registration content position */
+@media (min-width: 851px) {
+  .register-layout {
+    padding-top: 70px !important;
   }
 }

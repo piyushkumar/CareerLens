@@ -67,8 +67,8 @@ document.querySelector('#resume-form').addEventListener('submit', event => {
     fileInput.focus();
     return;
   }
-  fileError.textContent = 'Your file is selected and validated in the browser. Resume extraction will work after backend integration.';
-  fileError.style.color = '#c4c0ff';
+  sessionStorage.setItem('careerLensProfileInput', JSON.stringify({ mode: 'resume', fileName: chosenFile.name, fileSize: chosenFile.size, skills: [] }));
+  window.location.href = 'profile-review.html';
 });
 
 const skillInput = document.querySelector('#skill-input');
@@ -109,8 +109,8 @@ document.querySelector('#skills-form').addEventListener('submit', event => {
   event.preventDefault();
   skillsError.style.color = '#ff9f9f';
   if (!skills.length) { skillsError.textContent = 'Add at least one skill to continue.'; skillInput.focus(); return; }
-  skillsError.style.color = '#c4c0ff';
-  skillsError.textContent = `${skills.length} skill${skills.length === 1 ? '' : 's'} added in this preview. Saving and career analysis will be enabled after backend integration.`;
+  sessionStorage.setItem('careerLensProfileInput', JSON.stringify({ mode: 'manual', fileName: '', fileSize: 0, skills: [...skills] }));
+  window.location.href = 'profile-review.html';
 });
 
 const menuToggle = document.querySelector('#menu-toggle');
