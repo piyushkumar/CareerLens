@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 from sqlalchemy import URL, create_engine, text
 from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.orm import sessionmaker
 
 load_dotenv()
 
@@ -21,6 +22,12 @@ engine = create_engine(
     pool_pre_ping=True,
 )
 
+SessionLocal = sessionmaker(
+    bind=engine,
+    autoflush=False,
+    autocommit=False,
+)
+
 
 def test_database_connection():
     try:
@@ -30,3 +37,10 @@ def test_database_connection():
     except SQLAlchemyError as exc:
         print(f"Database connection failed: {exc}")
         return False
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,113 +7,324 @@
   <meta name="theme-color" content="#111111">
   <meta name="description" content="Explore CareerLens and start building your career profile.">
   <title>CareerLens Dashboard</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="home.css">
   <script src="home.js" defer></script>
 </head>
+
 <body data-auth-state="guest">
   <div class="background-grid" aria-hidden="true"></div>
 
+  <!-- ================= HEADER ================= -->
   <header class="site-header">
-    <a class="brand" href="index.html" aria-label="CareerLens landing page"><span class="brand-icon">C</span><span>CareerLens</span></a>
+    <a class="brand" href="index.html" aria-label="CareerLens landing page">
+      <span class="brand-icon">C</span>
+      <span>CareerLens</span>
+    </a>
+
+    <!-- Desktop navigation -->
     <nav class="desktop-nav" aria-label="Main navigation">
       <a class="nav-link active" href="home.html" aria-current="page">Home</a>
-      <a class="nav-link gated-link" href="login.html?returnTo=career-explorer" data-feature="Career Explorer">Career Explorer</a>
-      <a class="nav-link gated-link" href="login.html?returnTo=resume-analysis" data-feature="Resume Analysis">Resume Analysis</a>
-      <a class="nav-link gated-link" href="login.html?returnTo=skill-gaps" data-feature="Skill Gaps">Skill Gaps</a>
-      <a class="nav-link gated-link" href="login.html?returnTo=learning-roadmap" data-feature="Learning Roadmap">Learning Roadmap</a>
+
+      <a class="nav-link gated-link"
+         href="career-recommendations.html"
+         data-destination="career-recommendations.html"
+         data-feature="Career Explorer">Career Explorer</a>
+
+      <a class="nav-link gated-link"
+         href="resume-analysis.html"
+         data-destination="resume-analysis.html"
+         data-feature="Resume Analysis">Resume Analysis</a>
+
+      <a class="nav-link gated-link"
+         href="skill-gap-analysis.html"
+         data-destination="skill-gap-analysis.html"
+         data-feature="Skill Gaps">Skill Gaps</a>
+
+      <a class="nav-link gated-link"
+         href="learning-roadmap.html"
+         data-destination="learning-roadmap.html"
+         data-feature="Learning Roadmap">Learning Roadmap</a>
     </nav>
-    <div class="header-actions guest-actions" id="guest-actions"><a class="button button-light login-nav" href="login.html">Log in</a></div>
-    <div class="header-actions authenticated-actions" id="authenticated-actions" hidden>
-      <button class="profile-button" id="profile-button" type="button" aria-expanded="false" aria-controls="profile-menu">
-        <span class="avatar" id="avatar">U</span><span class="profile-label" id="profile-label">My Profile</span><span class="chevron" aria-hidden="true">⌄</span>
-      </button>
-      <div class="profile-menu" id="profile-menu" hidden><a href="#profile">Profile settings</a><button type="button" id="logout-button">Log out</button></div>
+
+    <!-- Guest login button -->
+    <div class="header-actions guest-actions" id="guest-actions">
+      <a class="button button-light login-nav" href="login.html">Log in</a>
     </div>
-    <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
+
+    <!-- Authenticated user profile -->
+    <div class="header-actions authenticated-actions" id="authenticated-actions" hidden>
+      <button class="profile-button" id="profile-button"
+              type="button" aria-expanded="false" aria-controls="profile-menu">
+        <span class="avatar" id="avatar">U</span>
+        <span class="profile-label" id="profile-label">My Profile</span>
+        <span class="chevron" aria-hidden="true">⌄</span>
+      </button>
+
+      <div class="profile-menu" id="profile-menu" hidden>
+        <a href="#profile">Profile settings</a>
+        <button type="button" id="logout-button">Log out</button>
+      </div>
+    </div>
+
+    <!-- Mobile menu toggle -->
+    <button class="menu-toggle" id="menu-toggle" type="button"
+            aria-label="Open navigation" aria-expanded="false"
+            aria-controls="mobile-nav">
+      <span></span>
+      <span></span>
+    </button>
   </header>
 
+  <!-- ================= MOBILE NAVIGATION ================= -->
   <nav class="mobile-nav" id="mobile-nav" hidden aria-label="Mobile navigation">
     <a href="home.html">Home</a>
-    <a class="gated-link" href="login.html?returnTo=career-explorer" data-feature="Career Explorer">Career Explorer</a>
-    <a class="gated-link" href="login.html?returnTo=resume-analysis" data-feature="Resume Analysis">Resume Analysis</a>
-    <a class="gated-link" href="login.html?returnTo=skill-gaps" data-feature="Skill Gaps">Skill Gaps</a>
-    <a class="gated-link" href="login.html?returnTo=learning-roadmap" data-feature="Learning Roadmap">Learning Roadmap</a>
+
+    <a class="gated-link"
+       href="career-recommendations.html"
+       data-destination="career-recommendations.html"
+       data-feature="Career Explorer">Career Explorer</a>
+
+    <a class="gated-link"
+       href="resume-analysis.html"
+       data-destination="resume-analysis.html"
+       data-feature="Resume Analysis">Resume Analysis</a>
+
+    <a class="gated-link"
+       href="skill-gap-analysis.html"
+       data-destination="skill-gap-analysis.html"
+       data-feature="Skill Gaps">Skill Gaps</a>
+
+    <a class="gated-link"
+       href="learning-roadmap.html"
+       data-destination="learning-roadmap.html"
+       data-feature="Learning Roadmap">Learning Roadmap</a>
+
     <a class="guest-mobile-login" href="login.html">Log in</a>
     <a class="authenticated-mobile-profile" href="#profile" hidden>Profile settings</a>
     <button type="button" id="mobile-logout-button" hidden>Log out</button>
   </nav>
 
+  <!-- ================= MAIN DASHBOARD ================= -->
   <main class="page-width">
+
+    <!-- Welcome section -->
     <section class="welcome-section">
       <div>
-        <p class="eyebrow"><span class="status-dot"></span> YOUR CAREER JOURNEY STARTS HERE</p>
-        <h1 id="welcome-heading">Welcome to CareerLens<span class="welcome-name">.</span></h1>
-        <p class="welcome-copy" id="welcome-copy">Understand your skills, discover suitable career paths, and plan what to learn next.</p>
+        <p class="eyebrow">
+          <span class="status-dot"></span>
+          YOUR CAREER JOURNEY STARTS HERE
+        </p>
+
+        <h1 id="welcome-heading">
+          Welcome to CareerLens<span class="welcome-name">.</span>
+        </h1>
+
+        <p class="welcome-copy" id="welcome-copy">
+          Understand your skills, discover suitable career paths, and plan what to learn next.
+        </p>
       </div>
     </section>
 
-    <section class="onboarding-panel panel" aria-labelledby="onboarding-title" id="onboarding">
+    <!-- ================= ONBOARDING ================= -->
+    <section class="onboarding-panel panel"
+             aria-labelledby="onboarding-title" id="onboarding">
+
       <div class="onboarding-copy">
-        <p class="eyebrow"><span class="status-dot"></span> YOUR FIRST STEP</p>
+        <p class="eyebrow">
+          <span class="status-dot"></span>
+          YOUR FIRST STEP
+        </p>
+
         <h2 id="onboarding-title">Let's build your career profile.</h2>
-        <p>Start with your resume or enter your skills manually. You can review your information before CareerLens prepares career recommendations.</p>
-        <div class="onboarding-note"><span aria-hidden="true">✦</span> No resume? That's okay — you can enter your skills yourself.</div>
+
+        <p>
+          Start with your resume or enter your skills manually.
+          You can review your information before CareerLens prepares career recommendations.
+        </p>
+
+        <div class="onboarding-note">
+          <span aria-hidden="true">✦</span>
+          No resume? That's okay — you can enter your skills yourself.
+        </div>
       </div>
+
       <div class="onboarding-actions">
-        <a class="onboarding-option gated-link" href="login.html?returnTo=resume-analysis" data-feature="Resume Analysis">
+
+        <!-- Resume upload / analysis -->
+        <a class="onboarding-option gated-link"
+           href="resume-analysis.html"
+           data-destination="resume-analysis.html"
+           data-feature="Resume Analysis">
+
           <span class="option-icon" aria-hidden="true">↥</span>
-          <span class="option-text"><strong>Upload your resume</strong><small>Choose a PDF to start your profile.</small></span>
+
+          <span class="option-text">
+            <strong>Upload your resume</strong>
+            <small>Choose a PDF to start your profile.</small>
+          </span>
+
           <span class="option-arrow" aria-hidden="true">↗</span>
         </a>
-        <a class="onboarding-option gated-link" href="login.html?returnTo=manual-skills" data-feature="Manual Skill Entry">
+
+        <!-- Manual skills / profile review -->
+        <a class="onboarding-option gated-link"
+           href="profile-review.html"
+           data-destination="profile-review.html"
+           data-feature="Manual Skill Entry">
+
           <span class="option-icon" aria-hidden="true">☷</span>
-          <span class="option-text"><strong>Enter skills manually</strong><small>Add the skills you already know.</small></span>
+
+          <span class="option-text">
+            <strong>Enter skills manually</strong>
+            <small>Add the skills you already know.</small>
+          </span>
+
           <span class="option-arrow" aria-hidden="true">↗</span>
         </a>
-        <p class="onboarding-footnote">Sign in or create an account to save your profile and results.</p>
+
+        <p class="onboarding-footnote">
+          Sign in or create an account to save your profile and results.
+        </p>
       </div>
     </section>
 
+    <!-- ================= CAREER OVERVIEW ================= -->
     <section class="preview-section" aria-labelledby="overview-title">
+
       <div class="section-title-row">
-        <div><p class="eyebrow">WHAT YOU'LL GET</p><h2 id="overview-title">Your career overview</h2></div>
+        <div>
+          <p class="eyebrow">WHAT YOU'LL GET</p>
+          <h2 id="overview-title">Your career overview</h2>
+        </div>
+
         <span class="subtle-label">Personalized after profile analysis</span>
       </div>
+
       <div class="summary-grid preview-grid">
+
+        <!-- Career recommendations -->
         <article class="summary-card">
-          <div class="card-topline"><span class="card-label">CAREER RECOMMENDATIONS</span><span class="status-pill">Locked</span></div>
-          <div class="large-symbol" aria-hidden="true">↗</div><h2>Find your direction</h2>
-          <p class="card-note">Explore career paths that match your skills, interests, and goals.</p>
-          <a class="inline-link gated-link" href="login.html?returnTo=career-explorer" data-feature="Career Explorer">Preview career paths <span aria-hidden="true">↗</span></a>
+          <div class="card-topline">
+            <span class="card-label">CAREER RECOMMENDATIONS</span>
+            <span class="status-pill">Login required</span>
+          </div>
+
+          <div class="large-symbol" aria-hidden="true">↗</div>
+          <h2>Find your direction</h2>
+
+          <p class="card-note">
+            Explore career paths that match your skills, interests, and goals.
+          </p>
+
+          <a class="inline-link gated-link"
+             href="career-recommendations.html"
+             data-destination="career-recommendations.html"
+             data-feature="Career Explorer">
+            Preview career paths <span aria-hidden="true">↗</span>
+          </a>
         </article>
+
+        <!-- Skill gap analysis -->
         <article class="summary-card">
-          <div class="card-topline"><span class="card-label">SKILL-GAP ANALYSIS</span><span class="status-pill">Locked</span></div>
-          <div class="large-symbol" aria-hidden="true">＋</div><h2>See what to improve</h2>
-          <p class="card-note">Compare your current skills with the requirements of a target career.</p>
-          <a class="inline-link gated-link" href="login.html?returnTo=skill-gaps" data-feature="Skill-Gap Analysis">Explore skill gaps <span aria-hidden="true">↗</span></a>
+          <div class="card-topline">
+            <span class="card-label">SKILL-GAP ANALYSIS</span>
+            <span class="status-pill">Login required</span>
+          </div>
+
+          <div class="large-symbol" aria-hidden="true">＋</div>
+          <h2>See what to improve</h2>
+
+          <p class="card-note">
+            Compare your current skills with the requirements of a target career.
+          </p>
+
+          <a class="inline-link gated-link"
+             href="skill-gap-analysis.html"
+             data-destination="skill-gap-analysis.html"
+             data-feature="Skill Gaps">
+            Explore skill gaps <span aria-hidden="true">↗</span>
+          </a>
         </article>
+
+        <!-- Learning roadmap -->
         <article class="summary-card">
-          <div class="card-topline"><span class="card-label">LEARNING ROADMAP</span><span class="status-pill">Locked</span></div>
-          <div class="large-symbol" aria-hidden="true">⌁</div><h2>Plan your next steps</h2>
-          <p class="card-note">Follow an ordered learning plan with topics, resources, and milestones.</p>
-          <a class="inline-link gated-link" href="login.html?returnTo=learning-roadmap" data-feature="Learning Roadmap">View roadmap <span aria-hidden="true">↗</span></a>
+          <div class="card-topline">
+            <span class="card-label">LEARNING ROADMAP</span>
+            <span class="status-pill">Login required</span>
+          </div>
+
+          <div class="large-symbol" aria-hidden="true">⌁</div>
+          <h2>Plan your next steps</h2>
+
+          <p class="card-note">
+            Follow an ordered learning plan with topics, resources, and milestones.
+          </p>
+
+          <a class="inline-link gated-link"
+             href="learning-roadmap.html"
+             data-destination="learning-roadmap.html"
+             data-feature="Learning Roadmap">
+            View roadmap <span aria-hidden="true">↗</span>
+          </a>
         </article>
+
       </div>
     </section>
 
+    <!-- ================= RECENT ANALYSES ================= -->
     <section class="recent-section panel" aria-labelledby="recent-title">
-      <div class="section-title-row"><div><p class="eyebrow">YOUR WORKSPACE</p><h2 id="recent-title">Recent analyses</h2></div><span class="subtle-label">Saved to your account</span></div>
-      <div class="empty-state"><span class="empty-state-icon" aria-hidden="true">⌕</span><div><h3>Your analyses will appear here.</h3><p>Once you sign in and analyze a resume or skill profile, you'll be able to return to your saved results.</p></div><a class="button button-light" href="login.html">Log in to get started <span aria-hidden="true">↗</span></a></div>
+
+      <div class="section-title-row">
+        <div>
+          <p class="eyebrow">YOUR WORKSPACE</p>
+          <h2 id="recent-title">Recent analyses</h2>
+        </div>
+
+        <span class="subtle-label">Saved to your account</span>
+      </div>
+
+      <div class="empty-state">
+        <span class="empty-state-icon" aria-hidden="true">⌕</span>
+
+        <div>
+          <h3>Your analyses will appear here.</h3>
+          <p>
+            Once you sign in and analyze a resume or skill profile,
+            you'll be able to return to your saved results.
+          </p>
+        </div>
+
+        <a class="button button-light" href="login.html">
+          Log in to get started <span aria-hidden="true">↗</span>
+        </a>
+      </div>
     </section>
 
+    <!-- ================= PROFILE SETTINGS ================= -->
     <section class="profile-panel" id="profile" hidden>
-      <div><p class="eyebrow">YOUR ACCOUNT</p><h2>Personalize your CareerLens experience.</h2><p>Your dashboard greeting uses your account name when available.</p></div>
+      <div>
+        <p class="eyebrow">YOUR ACCOUNT</p>
+        <h2>Personalize your CareerLens experience.</h2>
+        <p>Your dashboard greeting uses your account name when available.</p>
+      </div>
     </section>
+
   </main>
 
-  <footer class="site-footer page-width"><a class="brand footer-brand" href="index.html"><span class="brand-icon">C</span><span>CareerLens</span></a><span>CareerLens © 2026</span><a href="#onboarding">Start your profile ↑</a></footer>
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer page-width">
+    <a class="brand footer-brand" href="index.html">
+      <span class="brand-icon">C</span>
+      <span>CareerLens</span>
+    </a>
+
+    <span>CareerLens © 2026</span>
+    <a href="#onboarding">Start your profile ↑</a>
+  </footer>
+
 </body>
 </html>

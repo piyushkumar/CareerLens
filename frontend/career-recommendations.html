@@ -1,25 +1,48 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+  <!-- Basic page metadata. -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#111111">
+
+  <!-- Page title. -->
   <title>Career Recommendations | CareerLens</title>
+
+  <!-- Load the Geist font. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Reuse the existing stylesheet. -->
   <link rel="stylesheet" href="resume-analysis.css">
+
+  <!-- Protect this page from unauthorized access. -->
+  <script src="auth-guard.js"></script>
+
   <style>
+    /* Ensure hidden elements remain hidden. */
+    [hidden] {
+      display: none !important;
+    }
+
+    /* Center the recommendations content. */
     .results-wrap {
       max-width: 900px;
       margin: 0 auto 72px;
     }
 
+    /* Add spacing inside the results panel. */
     .results-card {
       padding: clamp(24px, 4vw, 42px);
     }
 
+    /* Style the main heading. */
     .results-card h1 {
       font-size: clamp(2rem, 5vw, 3.4rem);
       letter-spacing: -.055em;
@@ -27,12 +50,14 @@
       margin: 14px 0;
     }
 
+    /* Style the introductory text. */
     .results-copy {
       color: var(--muted, #aaa);
       line-height: 1.7;
       max-width: 650px;
     }
 
+    /* Style the empty-state icon. */
     .empty-icon {
       width: 58px;
       height: 58px;
@@ -45,11 +70,13 @@
       font-size: 1.6rem;
     }
 
+    /* Style the empty-state heading. */
     .empty-result h2 {
       font-size: 1.2rem;
       margin: 0 0 10px;
     }
 
+    /* Style the empty-state message. */
     .empty-result p {
       color: var(--muted, #aaa);
       line-height: 1.7;
@@ -57,6 +84,7 @@
       margin: 0 auto;
     }
 
+    /* Align action buttons. */
     .results-actions {
       display: flex;
       justify-content: center;
@@ -69,6 +97,7 @@
       justify-content: center;
     }
 
+    /* Stack action buttons on small screens. */
     @media (max-width: 520px) {
       .results-actions {
         flex-direction: column;
@@ -79,6 +108,7 @@
       }
     }
 
+    /* Display career cards in two columns. */
     .career-list {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -86,6 +116,7 @@
       margin-top: 28px;
     }
 
+    /* Style each career card. */
     .career-card {
       padding: 24px;
       border: 1px solid var(--border, #333);
@@ -108,6 +139,7 @@
       padding-left: 20px;
     }
 
+    /* Style career category labels. */
     .career-tag {
       display: inline-block;
       padding: 6px 10px;
@@ -117,12 +149,14 @@
       font-size: .78rem;
     }
 
+    /* Make career card buttons full width. */
     .career-card .button {
       width: 100%;
       justify-content: center;
       margin-top: 12px;
     }
 
+    /* Style the career status message. */
     #career-notice {
       margin-top: 20px;
       padding: 14px 18px;
@@ -132,58 +166,279 @@
       line-height: 1.6;
     }
 
+    /* Use one card per row on smaller screens. */
     @media (max-width: 650px) {
       .career-list {
         grid-template-columns: 1fr;
       }
     }
+
+    /* Align navbar account controls. */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Position the account dropdown. */
+    .account-dropdown {
+      position: relative;
+    }
+
+    /* Style the avatar and username button. */
+    .account-trigger {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      border: none;
+      background: transparent;
+      color: #f5f5f5;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    /* Style the circular avatar. */
+    .account-avatar {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #242432;
+      color: #b9adff;
+      font-weight: 700;
+    }
+
+    /* Style the username. */
+    .account-name {
+      max-width: 160px;
+      overflow-wrap: anywhere;
+      color: #f5f5f5;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* Style the account dropdown menu. */
+    .account-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      z-index: 1000;
+      min-width: 180px;
+      padding: 6px;
+      border: 1px solid #353535;
+      border-radius: 12px;
+      background: #191919;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, .35);
+    }
+
+    /* Style dropdown links and buttons. */
+    .account-menu a,
+    .account-menu button {
+      display: block;
+      width: 100%;
+      padding: 11px 12px;
+      border: none;
+      border-radius: 7px;
+      background: transparent;
+      color: #eee;
+      text-align: left;
+      text-decoration: none;
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    /* Highlight dropdown options on hover. */
+    .account-menu a:hover,
+    .account-menu button:hover {
+      background: #2a2a2a;
+    }
+
+    /* Style the mobile account name. */
+    #mobile-user-name:not([hidden]) {
+      display: block;
+      padding: 12px 16px;
+    }
   </style>
 </head>
 
 <body>
+  <!-- Decorative background. -->
   <div class="background-grid" aria-hidden="true"></div>
-  <header class="site-header"><a class="brand" href="index.html"><span
-        class="brand-icon">C</span><span>CareerLens</span></a>
-    <nav class="desktop-nav" aria-label="Main navigation"><a class="nav-link" href="home.html">Dashboard</a><a
-        class="nav-link active" href="career-recommendations.html" aria-current="page">Career direction</a></nav><a
-      class="button button-light login-nav" href="login.html?returnTo=career-recommendations">Log in</a><button
-      class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false"
-      aria-controls="mobile-nav"><span></span><span></span></button>
-  </header>
-  <nav class="mobile-nav" id="mobile-nav" hidden aria-label="Mobile navigation"><a href="home.html">Dashboard</a><a
-      href="career-recommendations.html">Career direction</a><a href="login.html?returnTo=career-recommendations">Log
-      in</a></nav>
-  <main class="page-width">
-    <section class="page-intro"><a class="back-link" href="profile-review.html">← Back to profile review</a>
-      <p class="eyebrow"><span class="status-dot"></span> STEP 3 · CAREER DIRECTION</p>
-    </section>
-    <section class="results-wrap panel results-card">
-      <p class="eyebrow">CAREER RECOMMENDATIONS</p>
-      <h1>Find a direction<br><span>that fits you.</span></h1>
-      <p class="results-copy">CareerLens will compare your reviewed skills with defined career requirements and explain
-        why each career may be a fit.</p>
 
+  <!-- Main navigation header. -->
+  <header class="site-header">
+
+    <!-- CareerLens brand. -->
+    <a class="brand" href="index.html">
+      <span class="brand-icon">C</span>
+      <span>CareerLens</span>
+    </a>
+
+    <!-- Desktop navigation. -->
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a class="nav-link" href="home.html">Dashboard</a>
+
+      <a
+        class="nav-link active"
+        href="career-recommendations.html"
+        aria-current="page"
+      >
+        Career direction
+      </a>
+    </nav>
+
+    <!-- Guest and authenticated account controls. -->
+    <div class="header-actions">
+
+      <!-- Shown to guests. -->
+      <a
+        class="button button-light login-nav"
+        id="login-nav"
+        href="login.html?returnTo=career-recommendations.html"
+        hidden
+      >
+        Log in
+      </a>
+
+      <!-- Shown to authenticated users. -->
+      <div class="account-dropdown" id="authenticated-nav" hidden>
+
+        <button
+          class="account-trigger"
+          id="account-trigger"
+          type="button"
+          aria-expanded="false"
+          aria-controls="account-menu"
+        >
+          <span class="account-avatar" id="nav-avatar">U</span>
+          <span class="account-name" id="nav-user-name">My Profile</span>
+        </button>
+
+        <!-- Account dropdown options. -->
+        <div class="account-menu" id="account-menu" hidden>
+          <a href="home.html#profile">Profile Settings</a>
+          <button id="nav-logout" type="button">Log out</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile navigation toggle. -->
+    <button
+      class="menu-toggle"
+      id="menu-toggle"
+      type="button"
+      aria-label="Open navigation"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+    >
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- Mobile navigation menu. -->
+  <nav class="mobile-nav" id="mobile-nav" hidden aria-label="Mobile navigation">
+    <a href="home.html">Dashboard</a>
+    <a href="career-recommendations.html">Career direction</a>
+
+    <!-- Mobile Login link for guests. -->
+    <a
+      id="mobile-login-nav"
+      href="login.html?returnTo=career-recommendations.html"
+    >
+      Log in
+    </a>
+
+    <!-- Mobile account controls. -->
+    <span id="mobile-user-name" hidden></span>
+    <button id="mobile-logout" type="button" hidden>Log out</button>
+  </nav>
+
+  <!-- Main career recommendations content. -->
+  <main class="page-width">
+
+    <!-- Page introduction. -->
+    <section class="page-intro">
+      <a class="back-link" href="profile-review.html">
+        ← Back to profile review
+      </a>
+
+      <p class="eyebrow">
+        <span class="status-dot"></span>
+        STEP 3 · CAREER DIRECTION
+      </p>
+    </section>
+
+    <!-- Career results panel. -->
+    <section class="results-wrap panel results-card">
+
+      <p class="eyebrow">CAREER RECOMMENDATIONS</p>
+
+      <h1>
+        Find a direction<br>
+        <span>that fits you.</span>
+      </h1>
+
+      <p class="results-copy">
+        CareerLens will compare your reviewed skills with defined career
+        requirements and explain why each career may be a fit.
+      </p>
+
+      <!-- Updated by career-recommendations.js. -->
       <div id="career-notice" role="status" aria-live="polite">
         Loading your profile information...
       </div>
 
+      <!-- Career cards will be inserted here when matching logic is ready. -->
       <div id="career-list" class="career-list" aria-live="polite"></div>
 
+      <!-- Honest empty state. -->
       <div class="empty-result">
         <div class="empty-icon" aria-hidden="true">✦</div>
+
         <h2>Your recommendations will appear here</h2>
-        <p>This page is ready for the next stage, but real recommendations need the skill-analysis and career-matching
-          logic. We won't display invented career matches or scores.</p>
+
+        <p>
+          This page is ready for the next stage, but real recommendations
+          need the skill-analysis and career-matching logic. We won't
+          display invented career matches or scores.
+        </p>
       </div>
-      <div class="results-actions"><a class="button button-light" href="resume-analysis.html">Edit skills or
-          resume</a><a class="button button-primary" href="profile-review.html">Review profile again <span
-            aria-hidden="true">↗</span></a></div>
+
+      <!-- Links to related features. -->
+      <div class="results-actions">
+        <a class="button button-light" href="resume-analysis.html">
+          Edit skills or resume
+        </a>
+
+        <a class="button button-primary" href="profile-review.html">
+          Review profile again
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
     </section>
   </main>
-  <footer class="site-footer page-width"><a class="brand footer-brand" href="index.html"><span
-        class="brand-icon">C</span><span>CareerLens</span></a><span>CareerLens © 2026</span><a
-      href="home.html">Dashboard ↑</a></footer>
+
+  <!-- Page footer. -->
+  <footer class="site-footer page-width">
+    <a class="brand footer-brand" href="index.html">
+      <span class="brand-icon">C</span>
+      <span>CareerLens</span>
+    </a>
+
+    <span>CareerLens © 2026</span>
+    <a href="home.html">Dashboard ↑</a>
+  </footer>
+
+  <!-- Load career functionality only once. -->
   <script src="career-recommendations.js" defer></script>
-</body> 
+
+  <!-- Shared navbar authentication and dropdown logic. -->
+  <script src="navbar.js"></script>
+</body>
 
 </html>
